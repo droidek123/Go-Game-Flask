@@ -45,26 +45,26 @@ class Board:
     def is_place_free(self, pos_x: int, pos_y: int) -> boolean:
         return True if self.array[pos_x][pos_y] == 0 else False
 
-    @staticmethod
-    def calculate_grid_points(margin, size, number_of_lines=9):
+    # @staticmethod
+    # def calculate_grid_points(margin, size, number_of_lines=9):
 
-        # vertical points
-        xp = np.linspace(margin, size - margin, number_of_lines)
-        yp = np.full((number_of_lines), margin)
-        svp = list(zip(xp, yp))
+    #     # vertical points
+    #     xp = np.linspace(margin, size - margin, number_of_lines)
+    #     yp = np.full((number_of_lines), margin)
+    #     svp = list(zip(xp, yp))
 
-        yp = np.full((number_of_lines), size - margin)
-        evp = list(zip(xp, yp))
+    #     yp = np.full((number_of_lines), size - margin)
+    #     evp = list(zip(xp, yp))
 
-        # horizontal points
-        yp = np.linspace(margin, size - margin, number_of_lines)
-        xp = np.full((number_of_lines), margin)
-        shp = list(zip(xp, yp))
+    #     # horizontal points
+    #     yp = np.linspace(margin, size - margin, number_of_lines)
+    #     xp = np.full((number_of_lines), margin)
+    #     shp = list(zip(xp, yp))
 
-        xp = np.full((number_of_lines), size - margin)
-        ehp = list(zip(xp, yp))
+    #     xp = np.full((number_of_lines), size - margin)
+    #     ehp = list(zip(xp, yp))
 
-        return (svp, evp, shp, ehp)
+    #     return (svp, evp, shp, ehp)
 
     def find_groups(self, color: Stone):
         c = 0

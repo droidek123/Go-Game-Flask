@@ -8,7 +8,6 @@ class Lobby:
         self.p1_name = None
         self.p2_name = None
         self.is_full = False
-        # self.array = np.zeros((9, 9))
         self.white_points = 7.5
         self.black_points = 0
         self.pass_counter = 0

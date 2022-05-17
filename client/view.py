@@ -26,8 +26,9 @@ from client import player_is_passing, check_status, move
 class View:
     """Class implementing gui"""
 
-    def __init__(self, name, oponent_name, color) -> None:
+    def __init__(self, name, oponent_name, color, id) -> None:
         """Constructor"""
+        self.id = id 
         self.array = self.array = np.zeros((9, 9))
         self.list_of_points = self.calculate_grid_points(MARGIN, SIZE)
         self.black_points = 0
@@ -154,7 +155,7 @@ class View:
                 if event.type == pygame.QUIT:
                     sys.exit()
             if self.is_blocked == True:
-                response = check_status()
+                response = check_status(self.id)
                 if response['turn'] == self.color:
                     self.change_is_blocked()
                     self.white_points = response['whitePoints']
@@ -185,7 +186,7 @@ class View:
         is_click_valid = self.set_value_in_board(num_x, num_y, self.stone)
         if is_click_valid == False:
             return
-        response = move(json.dumps(self.array.tolist()))
+        response = move(json.dumps(self.array.tolist()), self.id)
         self.array = np.array(json.loads(response['array']))
         self.white_points = response['whitePoints']
         self.black_points = response['blackPoints']
@@ -201,7 +202,7 @@ class View:
             self.is_blocked = False
 
     def passing(self):
-        response = player_is_passing()
+        response = player_is_passing(self.id)
         if response['correct'] == True:
             self.change_is_blocked()
 

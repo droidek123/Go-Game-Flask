@@ -9,10 +9,12 @@ from client import connect_to_lobby, check_status
 def main():
     nick_name = sys.argv[1]
     status = 0
+    id = -1
     while status == 0:
-        r = connect_to_lobby(nick_name)
+        r = connect_to_lobby(nick_name, id)
         if r.ok:
             reponse = r.json()
+            id = reponse['id']
             if reponse['status'] == 0:
                 print("Oczekiwanie na przeciwnika...")
                 time.sleep(5.0)
@@ -28,9 +30,9 @@ def main():
 
 
     if color == "black":
-        view = View(yourName, oponentName, color)
+        view = View(yourName, oponentName, color, id)
     else:
-          view = View(oponentName, yourName, color)
+          view = View(oponentName, yourName, color, id)
     view.init_pygame()
     view.draw()
     while True:

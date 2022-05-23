@@ -63,4 +63,4 @@ class EngineMem:
                 else:
                     lobby.black_points += len(group)
         lobby.change_turn()
-        print(lobby.array)
+
